@@ -1,17 +1,12 @@
 #ifndef DISASM_H
 #define DISASM_H
 
-#include <string>
+#include <fstream>
 
 namespace disasm {
-    struct test_s {
-        std::string name;
-        int x;
-        int y;
-    };
-
-    void say_hello();
-    test_s create_test_s(const std::string &given_name);
+    const char* load_binary(const char* path);
+    const char* disassemble(const char* code);
+    void build_asm();
 }
 
 #endif // DISASM_H
