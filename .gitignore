@@ -1,0 +1,21 @@
+# CMake build dir
+build/
+
+# Everything in CMake build dir
+.cmake/
+.vs/
+ALL_BUILD.dir/
+CMakeFiles/
+x64/
+ZERO_CHECK.dir/
+ALL_BUILD.vcxproj
+ALL_BUILD.vcxproj.filters
+cmake_install.cmake
+CMakeCache.txt
+intel8080.sln
+ZERO_CHECK.vcxproj
+ZERO_CHECK.vcxproj.filters
+
+# Specific dirs in build/
+build/disassembler/
+build/emulator/
