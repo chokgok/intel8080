@@ -1,6 +1,25 @@
 #include <disasm.h>
 
 namespace {
+    constexpr short OP_LENGTH[256] {
+    //x 0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+        1, 3, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1,
+        1, 3, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1,
+        1, 3, 3, 1, 1, 1, 2, 1, 1, 1, 3, 1, 1, 1, 2, 1,
+        1, 3, 3, 1, 1, 1, 2, 1, 1, 1, 3, 1, 1, 1, 2, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 3, 3, 3, 1, 2, 1, 1, 1, 3, 3, 3, 3, 2, 1,
+        1, 1, 3, 2, 3, 1, 2, 1, 1, 1, 3, 2, 3, 3, 2, 1,
+        1, 1, 3, 1, 3, 1, 2, 1, 1, 1, 3, 1, 3, 3, 2, 1,
+        1, 1, 3, 1, 3, 1, 2, 1, 1, 1, 3, 1, 3, 3, 2, 1,
+    };
 }
 
 namespace disasm {
@@ -16,11 +35,19 @@ namespace disasm {
     }
 
     // TODO: implement me
-    std::string disassemble(const std::vector<char>& in_bin_code)
+    std::vector<char> disassemble(const std::vector<char>& in_bin_code)
     {
         if (in_bin_code.empty()) { return {}; }
-
-        return {};
+        std::vector<char> asm_code;
+        auto op = in_bin_code.begin();
+        while(op != in_bin_code.end()) {
+            switch(*op && 0xFF) {
+                case 0x00:
+                    op += OP_LENGTH[*op];
+            }
+        }
+        
+        return asm_code;
     }
 
     // TODO: implement me
