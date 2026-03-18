@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include <locale>
 
 namespace disasm {
 
@@ -41,6 +42,8 @@ namespace disasm {
 
     // 16-bit to *lowercase* hex string
     std::string hex16l(int x);
+
+    std::string get_op_string(const char* op);
 }
 
 #endif // DISASM_H
