@@ -19,3 +19,6 @@ ZERO_CHECK.vcxproj.filters
 # Specific dirs in build/
 build/disassembler/
 build/emulator/
+
+# ignore generated .asm files
+*.asm
