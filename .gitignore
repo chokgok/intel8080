@@ -22,3 +22,6 @@ build/emulator/
 
 # ignore generated .asm files
 *.asm
+
+# ignore vscode stuff
+.vscode/
