@@ -21,14 +21,14 @@ namespace {
         1, 1, 3, 1, 3, 1, 2, 1, 1, 1, 3, 1, 3, 3, 2, 1,
     };
 
-    constexpr const char* OP_STRING[]{
+    constexpr const char* OP_STRING[] {
         "NOP",
-        "LXI    B, #${}{}",
+        "LXI    B, #${0:02x}{1:02x}",
         "STAX   B",
         "INX    B",
         "INR    B",
         "DCR    B",
-        "MVI    B, #${}",
+        "MVI    B, #${0:02x}",
         "RLC",
         "*NOP",
         "DAD    B",
@@ -36,15 +36,15 @@ namespace {
         "DCX    B",
         "INR    C",
         "DCR    C",
-        "MVI    C, #${}",
+        "MVI    C, #${0:02x}",
         "RRC",
         "*NOP",
-        "LXI    D, #${}{}",
+        "LXI    D, #${0:02x}{1:02x}",
         "STAX   D",
         "INX    D",
         "INR    D",
         "DCR    D",
-        "MVI    D, #${}",
+        "MVI    D, #${0:02x}",
         "RAL",
         "*NOP",
         "DAD    D",
@@ -52,39 +52,39 @@ namespace {
         "DCX    D",
         "INR    E",
         "DCR    E",
-        "MVI    E, #${}",
+        "MVI    E, #${0:02x}",
         "RAR",
         "*NOP",
-        "LXI    H, #${}{}",
-        "SHLD   ${}",
+        "LXI    H, #${0:02x}{1:02x}",
+        "SHLD   ${0:02x}{1:02x}",
         "INX    H",
         "INR    H",
         "DCR    H",
-        "MVI    H, #${}",
+        "MVI    H, #${0:02x}",
         "DAA",
         "*NOP",
         "DAD    H",
-        "LHLD   ${}",
+        "LHLD   ${0:02x}{1:02x}",
         "DCX    H",
         "INR    L",
         "DCR    L",
-        "MVI    L, #${}",
+        "MVI    L, #${0:02x}",
         "CMA",
         "*NOP",
-        "LXI    SP, #${}{}",
-        "STA    ${}",
+        "LXI    SP, #${0:02x}{1:02x}",
+        "STA    ${0:02x}{1:02x}",
         "INX    SP",
         "INR    M",
         "DCR    M",
-        "MVI    M, #${}",
+        "MVI    M, #${0:02x}",
         "STC",
         "*NOP",
         "DAD    SP",
-        "LDA    ${}",
+        "LDA    ${0:02x}{1:02x}",
         "DCX    SP",
         "INR    A",
         "DCR    A",
-        "MVI    A, #${}",
+        "MVI    A, #${0:02x}",
         "CMC",
         "MOV    B, B",
         "MOV    B, C",
@@ -216,96 +216,96 @@ namespace {
         "CMP    A",
         "RNZ",
         "POP    B",
-        "JNZ    ${}",
-        "JMP    ${}",
-        "CNZ    ${}",
+        "JNZ    ${0:02x}{1:02x}",
+        "JMP    ${0:02x}{1:02x}",
+        "CNZ    ${0:02x}{1:02x}",
         "PUSH   B",
-        "ADI    #${}",
+        "ADI    #${0:02x}",
         "RST    0",
         "RZ",
         "RET",
-        "JZ     ${}",
-        "*JMP   ${}",
-        "CZ     ${}",
-        "CALL   ${}",
-        "ACI    #${}",
+        "JZ     ${0:02x}{1:02x}",
+        "*JMP   ${0:02x}{1:02x}",
+        "CZ     ${0:02x}{1:02x}",
+        "CALL   ${0:02x}{1:02x}",
+        "ACI    #${0:02x}",
         "RST    1",
         "RNC",
         "POP    D",
-        "JNC    ${}",
-        "OUT    #${}",
-        "CNC    ${}",
+        "JNC    ${0:02x}{1:02x}",
+        "OUT    #${0:02x}",
+        "CNC    ${0:02x}{1:02x}",
         "PUSH   D",
-        "SUI    #${}",
+        "SUI    #${0:02x}",
         "RST    2",
         "RC",
         "*RET",
-        "JC     ${}",
-        "IN     #${}",
-        "CC     ${}",
-        "*CALL  ${}",
-        "SBI    #${}",
+        "JC     ${0:02x}{1:02x}",
+        "IN     #${0:02x}",
+        "CC     ${0:02x}{1:02x}",
+        "*CALL  ${0:02x}{1:02x}",
+        "SBI    #${0:02x}",
         "RST    3",
         "RPO",
         "POP    H",
-        "JPO    ${}",
+        "JPO    ${0:02x}{1:02x}",
         "XTHL",
-        "CPO    ${}",
+        "CPO    ${0:02x}{1:02x}",
         "PUSH   H",
-        "ANI    #${}",
+        "ANI    #${0:02x}",
         "RST    4",
         "RPE",
         "PCHL",
-        "JPE    ${}",
+        "JPE    ${0:02x}{1:02x}",
         "XCHG",
-        "CPE    ${}",
-        "*CALL  ${}",
-        "XRI    #${}",
+        "CPE    ${0:02x}{1:02x}",
+        "*CALL  ${0:02x}{1:02x}",
+        "XRI    #${0:02x}",
         "RST    5",
         "RP",
         "POP    PSW",
-        "JP     ${}",
+        "JP     ${0:02x}{1:02x}",
         "DI",
-        "CP     ${}",
+        "CP     ${0:02x}{1:02x}",
         "PUSH   PSW",
-        "ORI    #${}",
+        "ORI    #${0:02x}",
         "RST    6",
         "RM",
         "SPHL",
-        "JM     ${}",
+        "JM     ${0:02x}{1:02x}",
         "EI",
-        "CM     ${}",
-        "*CALL  ${}",
-        "CPI    #${}",
+        "CM     ${0:02x}{1:02x}",
+        "*CALL  ${0:02x}{1:02x}",
+        "CPI    #${0:02x}",
         "RST    7",
     };
 }
 
 namespace disasm {
-    std::vector<char> load_binary(const std::string& bin_path)
+    std::vector<unsigned char> load_binary(const std::string& bin_path)
     {
         std::ifstream bin_file{ bin_path, std::ios::binary | std::ios::in };
         if (!bin_file.is_open()) { return {}; }
         auto bin_size{ std::filesystem::file_size(bin_path) };
-        std::vector<char> out_bin_code( bin_size, {} );
-        bin_file.read(out_bin_code.data(), bin_size);
+        std::vector<unsigned char> out_bin_code( bin_size, {} );
+        bin_file.read(reinterpret_cast<char*>(out_bin_code.data()), bin_size);
         //bin_file.close(); // Destructor will handle it
         return out_bin_code;
     }
 
-    std::string disassemble(const std::vector<char>& in_bin_code)
+    std::string disassemble(const std::vector<unsigned char>& in_bin_code)
     {
         if (in_bin_code.empty()) { return {}; }
         std::string asm_code;
         std::size_t pc{ 0 };
         auto code{ &in_bin_code.data()[pc] };
         while(pc < in_bin_code.size()) {
-            asm_code += std::format("{}  ", hex16u(pc));
+            asm_code += std::format("{:04x}  ", pc);
             // asm_code += hex16u(pc);
             // asm_code += "  ";
             // TODO: implement all opcode strings
             asm_code += get_op_string(code);
-            auto op_bytes = OP_BYTE_LENGTH[static_cast<unsigned char>(*code)];
+            auto op_bytes = OP_BYTE_LENGTH[*code];
             pc += op_bytes;
             code += op_bytes;
             asm_code += "\n";
@@ -326,7 +326,7 @@ namespace disasm {
 
     ////////
 
-    bool print_binary_code(const std::vector<char>& bin_code, std::size_t row_length)
+    bool print_binary_code(const std::vector<unsigned char>& bin_code, std::size_t row_length)
     {
         if (bin_code.empty()) { return false; }
 
@@ -343,7 +343,7 @@ namespace disasm {
         return true;
     }
 
-    bool print_binary_code(const std::vector<char>& bin_code)
+    bool print_binary_code(const std::vector<unsigned char>& bin_code)
     {
         return disasm::print_binary_code(bin_code, DEFAULT_ROW_LENGTH);
     }
@@ -402,12 +402,12 @@ namespace disasm {
         return hex;
     }
 
-    std::string get_op_string(const char* op)
+    std::string get_op_string(const unsigned char* op)
     {
         // TODO: should I add file_size parameter and check if there's actual
         // room in the array for byte_little and byte_big?
-        char byte_little;
-        char byte_big;
+        int byte_little;
+        int byte_big;
         short length = OP_BYTE_LENGTH[*op];
 
         bool has_one_byte = length >= 2;
@@ -421,14 +421,15 @@ namespace disasm {
         }
 
         std::string result;
-        std::string op_string{ OP_STRING[*op] };
+        const char* op_string{ OP_STRING[*op] };
+        //std::cout << op_string;
         if (has_no_bytes) {
             result = OP_STRING[*op];
             return result;
-        } else if (has_one_byte) {
-            result = std::vformat(op_string, byte_little);
         } else if (has_two_bytes) {
-            result = std::vformat(op_string, byte_big, byte_little);
+            result = std::vformat(op_string, std::make_format_args(byte_big, byte_little));
+        } else if (has_one_byte) {
+            result = std::vformat(op_string, std::make_format_args(byte_little));
         }
         return result;
 

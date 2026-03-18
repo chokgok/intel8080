@@ -25,3 +25,6 @@ build/emulator/
 
 # ignore vscode stuff
 .vscode/
+
+# idk what this is
+vc140.pdb

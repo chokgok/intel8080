@@ -22,7 +22,7 @@ namespace disasm_test {
         if (args_do_not_exist(argc, argv)) { return false; }
 
         const std::string bin_path{ argv[1] };
-        std::vector<char> bin_code{ disasm::load_binary(bin_path) };
+        std::vector<unsigned char> bin_code{ disasm::load_binary(bin_path) };
         if (bin_code.empty()) {
             std::cout << "Error loading binary" << std::endl;
             return false;
@@ -44,7 +44,7 @@ namespace disasm_test {
         if (args_do_not_exist(argc, argv)) { return false; }
 
         const std::string bin_path{ argv[1] };
-        const std::vector<char> bin_code{ disasm::load_binary(bin_path) };
+        const std::vector<unsigned char> bin_code{ disasm::load_binary(bin_path) };
         return disasm::print_binary_code(bin_code);
     }
 
