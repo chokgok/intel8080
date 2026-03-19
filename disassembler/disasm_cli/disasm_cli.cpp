@@ -15,9 +15,19 @@ int main(int argc, char* argv[])
     }
 
     auto bin_code{ disasm::load_binary(argv[1]) };
+    if (bin_code.empty()) {
+        std::cout << "Failed to load binary file" << std::endl;
+        return 1;
+    }
     auto asm_code{ disasm::disassemble(bin_code) };
-    std::ofstream file{ argv[2], std::ios::trunc };
-    file << asm_code;
+    if (asm_code.empty()) {
+        std::cout << "Failed to disassemble the binary" << std::endl;
+        return 1;
+    }
+    if (!disasm::save_asm(argv[2], asm_code)) {
+        std::cout << "Failed to save disassembled binary file" << std::endl;
+        return 1;
+    }
     
     return 0;
 }
